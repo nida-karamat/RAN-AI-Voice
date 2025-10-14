@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Start48HourStep from "./Start48HourSetup";
 export default function RanVoiceSetup() {
   const [activeStep, setActiveStep] = useState(1);
 
