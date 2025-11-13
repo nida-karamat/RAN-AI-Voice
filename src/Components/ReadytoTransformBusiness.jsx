@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
-import screen from "../assets/Images/screen.svg";
+import laptop from "../assets/Images/laptop.png";
 
 export default function ReadyToTransformYourBusiness() {
   return (
@@ -34,7 +34,7 @@ export default function ReadyToTransformYourBusiness() {
               <div className="space-y-4">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
                   Ready to Transform Your{" "}
-                  <span className="font-semibold">Business With AI?</span>
+                  <span className="font-semibold inline">Business With AI?</span>
                 </h1>
                 <p className="text-blue-100 text-base sm:text-lg leading-relaxed max-w-md mx-auto lg:mx-0">
                   Join thousands of companies already using Ran AI to revolutionize
@@ -46,9 +46,8 @@ export default function ReadyToTransformYourBusiness() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
                 className="flex mx-auto lg:mx-0 items-center gap-3 bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-blue-50 transition-all shadow-lg group"
-                onClick={() => window.open("https://ran-ai.com/", "_blank")}
               >
-                Start your free trial
+                Book a Demo
                 <motion.div
                   className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center group-hover:bg-blue-700 transition-colors"
                   animate={{ x: [0, 6, 0] }}
@@ -113,10 +112,11 @@ export default function ReadyToTransformYourBusiness() {
                 transition={{ duration: 1 }}
               >
                 <motion.img
-                  src={screen}
+                  src={laptop}
                   alt="AI Screen Mockup"
                   whileHover={{ scale: 1.05, rotateY: 5 }}
                   transition={{ type: "spring", stiffness: 120 }}
+                  
                 />
               </motion.div>
             </div>

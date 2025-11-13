@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+
+
+/* Responsive height-based adjustments so CallScreen card fits small desktop viewports
+	 without requiring the user to scroll inside the modal. Tuned to match common laptop
+	 heights — adjust breakpoints if needed. */
+@media (max-height: 900px) {
+	.call-card { padding: 1rem; }
+	.call-avatar { width: 80px !important; height: 80px !important; }
+	.timer-box { width: 56px !important; height: 56px !important; }
+	.timer-box .text-2xl { font-size: 1.125rem; }
+	.waveform svg { height: 80px !important; }
+	.action-inner { width: 56px !important; height: 56px !important; font-size: 1.25rem; }
+	.action-btn span { font-size: 0.75rem; }
+}
+
+@media (max-height: 760px) {
+	.call-card { padding: 0.75rem; }
+	.call-avatar { width: 64px !important; height: 64px !important; }
+	.timer-box { width: 48px !important; height: 48px !important; }
+	.timer-box .text-2xl { font-size: 1rem; }
+	.waveform svg { height: 64px !important; }
+	.action-inner { width: 48px !important; height: 48px !important; font-size: 1rem; }
+	.action-btn span { font-size: 0.68rem; }
+}
+
+

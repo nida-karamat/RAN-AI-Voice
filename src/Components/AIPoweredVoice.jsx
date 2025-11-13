@@ -3,9 +3,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { LuAudioLines } from "react-icons/lu";
-import expGroup from "../assets/Images/expGroup .svg";
-import img2 from "../assets/Images/img2.JPg";
-import img4 from "../assets/Images/img4.JPg";
+import expGroup from "../assets/Images/expGroup1.svg";
+import liza from "../assets/Images/liza1.jpg";
+import diego from "../assets/Images/diego2.jpg";
 
 export default function AIPoweredVoice() {
   const fadeUp = {
@@ -120,9 +120,9 @@ export default function AIPoweredVoice() {
               >
                 {msg.user && (
                   <img
-                    src={img2}
+                    src={liza}
                     alt="user"
-                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full"
+                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover object-[center_top]"
                   />
                 )}
                 <motion.div
@@ -133,9 +133,9 @@ export default function AIPoweredVoice() {
                 </motion.div>
                 {!msg.user && (
                   <img
-                    src={img4}
+                    src={diego}
                     alt="agent"
-                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full"
+                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover object-[center_top]"
                   />
                 )}
               </motion.div>
@@ -193,6 +193,7 @@ export default function AIPoweredVoice() {
             <motion.img
               src={expGroup}
               alt="Soundwave Analytics"
+              className="w-full h-full object-contain"
               whileHover={{ scale: 1.07, rotate: -4 }}
               transition={{ type: "spring", stiffness: 200 }}
             />

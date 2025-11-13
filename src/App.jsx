@@ -11,117 +11,183 @@ import ReadytoTransformBusiness from "./Components/ReadytoTransformBusiness";
 import Footer from "./Components/Footer";
 import Integrate from "./Components/Integrate";
 import Logo from "./assets/Images/logo.jpg";
+import ScrollToHashElement from "./Components/ScrollToHashElement"; // 👈 Added import
+import CallScreen from "./Components/CallScreen"; // new top-level call UI
+import background from "./assets/Images/background.jpg";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [textIndex, setTextIndex] = useState(0);
+  const [callModal, setCallModal] = useState({ show: false, caller: null }); // top-level call modal state
+  const loadingMessages = [
+    "Initializing RAN AI systems...",
+    "Loading neural voice modules...",
+    "Calibrating smart workflows...",
+    "Preparing your AI experience...",
+  ];
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 5000);
+    // Voice greeting
+    const synth = window.speechSynthesis;
+    const utter = new SpeechSynthesisUtterance(
+      "Welcome to RAN Voice — preparing your experience..."
+    );
+    synth.speak(utter);
+
+    // Loader timer
+    const timer = setTimeout(() => setLoading(false), 6000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Cycle through typewriter text
+  useEffect(() => {
+    if (loading) {
+      const interval = setInterval(() => {
+        setTextIndex((prev) => (prev + 1) % loadingMessages.length);
+      }, 1500);
+      return () => clearInterval(interval);
+    }
+  }, [loading]);
+
+  // listen for Try-button dispatch from AIAgentCards
+  useEffect(() => {
+    const handler = (e) => {
+      const caller = e?.detail || null;
+      setCallModal({ show: true, caller });
+    };
+    window.addEventListener("openCallScreen", handler);
+    return () => window.removeEventListener("openCallScreen", handler);
   }, []);
 
   if (loading) {
     return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0f1f] via-black to-[#0a0f1f] overflow-hidden text-center px-4">
-        {/* Floating gradient background waves */}
+      <div
+        className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden text-center px-4"
+        style={{
+          backgroundImage: `linear-gradient(to bottom right, rgba(59,130,246,0.18), rgba(99,102,241,0.12)), url(${background})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Floating aur glowing soft circles background */}
         <motion.div
-          className="absolute inset-0 opacity-40"
-          animate={{
-            background: [
-              "radial-gradient(circle at 20% 30%, #3b82f6 0%, transparent 70%)",
-              "radial-gradient(circle at 80% 70%, #8b5cf6 0%, transparent 70%)",
-              "radial-gradient(circle at 40% 50%, #3b82f6 0%, transparent 70%)",
-            ],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          className="absolute inset-0 overflow-hidden"
+          
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        {/* Floating glow particles */}
-        <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <motion.span
-              key={i}
-              className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                scale: 0.5 + Math.random(),
-                opacity: 0.3 + Math.random() * 0.7,
-              }}
-              animate={{
-                y: [null, Math.random() * window.innerHeight],
-                x: [null, Math.random() * window.innerWidth],
-                opacity: [0.2, 0.9, 0.2],
-                scale: [1, 1.6, 1],
-              }}
-              transition={{
-                duration: 6 + Math.random() * 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
+        {/* Center hero glow behind logo (clearly visible) */}
+        <motion.div
+          className="pointer-events-none absolute w-[22rem] h-[22rem] sm:w-[28rem] sm:h-[28rem] rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(191,219,254,0.75) 0%, rgba(147,197,253,0.55) 40%, rgba(147,197,253,0.25) 60%, transparent 70%)",
+            filter: "blur(18px)",
+          }}
+          initial={{ opacity: 0.6, scale: 0.9 }}
+          animate={{ opacity: [0.55, 0.8, 0.55], scale: [0.9, 1.05, 0.9] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Animated tech grid overlay (professional) */}
+        <motion.div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: `
+              repeating-linear-gradient(
+                to right,
+                rgba(255,255,255,0.10),
+                rgba(255,255,255,0.10) 1px,
+                transparent 1px,
+                transparent 80px
+              ),
+              repeating-linear-gradient(
+                to bottom,
+                rgba(255,255,255,0.10),
+                rgba(255,255,255,0.10) 1px,
+                transparent 1px,
+                transparent 80px
+              )
+            `,
+            backgroundSize: 'auto',
+            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.9))',
+          }}
+          animate={{ backgroundPosition: ['0px 0px, 0px 0px', '40px 20px, 20px 40px', '0px 0px, 0px 0px'] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        />
+
+        {/* Subtle pulsing nodes on grid intersections */}
+        <div className="pointer-events-none absolute inset-0">
+          {[...Array(38)].map((_, i) => {
+            const left = (i * 11 + 8) % 95;
+            const top = (i * 7 + 12) % 85;
+            return (
+              <motion.span
+                key={`node-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  width: 8,
+                  height: 8,
+                  left: `${left}%`,
+                  top: `${top}%`,
+                  background: 'white',
+                  filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))',
+                  opacity: 0.7,
+                }}
+                animate={{ opacity: [0.35, 0.9, 0.35], scale: [0.9, 1.2, 0.9] }}
+                transition={{ duration: 3 + (i % 5) * 0.6, repeat: Infinity, ease: 'easeInOut', delay: (i % 7) * 0.2 }}
+              />
+            );
+          })}
         </div>
-
-        {/* Rotating glowing rings around logo */}
+  
+        {/* Rotating aura rings */}
+      
+  
+        {/* Logo soft glow - smooth one-time zoom-in (no continuous movement) */}
         <motion.div
-          className="absolute w-60 h-60 rounded-full border-2 border-blue-500 blur-[2px] opacity-60"
-          animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute w-44 h-44 rounded-full border-2 border-indigo-500 blur-[3px] opacity-40"
-          animate={{ rotate: -360, scale: [1, 1.3, 1] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-        />
-
-        {/* Main logo animation */}
-        <motion.div
-          initial={{ scale: 0.6, opacity: 0, rotate: 0 }}
+          initial={{ scale: 0.8, opacity: 0 }}
           animate={{
-            scale: [1, 1.25, 1],
-            opacity: [0.5, 1, 0.8],
-            rotate: [0, 10, -10, 0],
+            scale: [0.8, 1.3, 1],
+            opacity: [0, 1, 0.95],
           }}
           transition={{
-            duration: 3,
-            ease: "easeInOut",
-            repeat: Infinity,
+            duration: 1.9,
+            ease: "easeOut",
           }}
-          className="relative z-10 rounded-full shadow-2xl"
         >
           <img
             src={Logo}
             alt="Company Logo"
-            className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain rounded-full bg-white p-3 shadow-lg"
+            className="w-32 h-32 sm:w-44 sm:h-44 md:w-56 md:h-56 object-contain drop-shadow-[0_0_12px_rgba(59,130,246,0.5)] mt-8"
           />
         </motion.div>
-
-        {/* Text shimmer + fade (responsive & centered) */}
+  
+        {/* Loading text */}
         <motion.p
-          className="mt-8 sm:mt-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-600 text-base sm:text-lg md:text-xl tracking-[0.15em] sm:tracking-[0.2em] uppercase font-semibold z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0.2, 1, 0.2] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          key={textIndex}
+          className="mt-8 text-blue-700 text-base sm:text-lg md:text-xl font-semibold tracking-wide uppercase bg-clip-text"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          Preparing Your Experience...
+          {loadingMessages[textIndex]}
         </motion.p>
-
-        {/* Bottom fade light wave */}
+  
+        {/* Subtle wave glow bottom */}
         <motion.div
-          className="absolute bottom-0 w-full h-32 sm:h-40 bg-gradient-to-t from-blue-500/20 to-transparent blur-3xl"
-          animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.1, 1] }}
-          transition={{ duration: 3, repeat: Infinity }}
+          className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-blue-300/40 to-transparent blur-3xl"
+          animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.1, 1] }}
+          transition={{ duration: 4, repeat: Infinity }}
         />
       </div>
     );
   }
+  
 
-  // After Loader
+  // Main content after loading
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
@@ -129,6 +195,21 @@ const App = () => {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="overflow-x-hidden"
     >
+      {/* 👇 Scrolls automatically when hash is present */}
+      <ScrollToHashElement />
+
+      {/* Top-level CallScreen modal (opened via "openCallScreen" event) */}
+      {callModal.show && (
+        <div className="fixed inset-0 z-60 flex items-start justify-center p-6 bg-black/50">
+          <div className="w-full max-w-6xl">
+            <CallScreen
+              caller={callModal.caller}
+              onClose={() => setCallModal({ show: false, caller: null })}
+            />
+          </div>
+        </div>
+      )}
+
       <Layout />
 
       <section id="industries">
@@ -139,7 +220,7 @@ const App = () => {
         <BusinessesLoves />
       </section>
 
-      <section id="how">
+      <section id="industry-insights">
         <AIPoweredVoice />
       </section>
 
@@ -158,7 +239,6 @@ const App = () => {
       <section id="cases">
         <ReadytoTransformBusiness />
       </section>
-
       <Footer />
     </motion.div>
   );
