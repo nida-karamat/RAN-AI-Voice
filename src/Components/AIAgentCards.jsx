@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 
 import React, { useState, useRef, useEffect } from "react";
+=======
+"use client";
+import React, { useState, useRef } from "react";
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
 import { IoMdClose } from "react-icons/io";
 import { GrPhone } from "react-icons/gr";
 import { RiCalendarCheckLine } from "react-icons/ri";
@@ -40,11 +45,17 @@ import diego11 from "../assets/Images/diego/diego11.jpg";
 import diego22 from "../assets/Images/diego/diego22.jpg";
 import diego33 from "../assets/Images/diego/diego33.jpg";
 
+<<<<<<< HEAD
 export default function AIAgentCards({
   popupId,
   onClose,
   roleScopedThumbnails = false,
 }) {
+=======
+import { useEffect } from "react";
+
+export default function AIAgentCards({ popupId, onClose }) {
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
   const [activeTab, setActiveTab] = useState("description");
   const [isVideoMuted, setIsVideoMuted] = useState(true);
   const videoRef = useRef(null);
@@ -59,6 +70,25 @@ export default function AIAgentCards({
     window.addEventListener("openAgentPopup", handleAgentPopup);
     return () => window.removeEventListener("openAgentPopup", handleAgentPopup);
   }, []);
+<<<<<<< HEAD
+=======
+ 
+  // When a circle thumbnail is clicked, open the corresponding agent's popup
+  const handleImageClick = (_agentId, index) => {
+    // Agents are organized in groups of 4 thumbnails per popup view
+    // e.g., 1–4, 5–8, 9–12, 13–16
+    const groupStartId = Math.floor((agent.id - 1) / 4) * 4 + 1;
+    const targetId = groupStartId + index;
+
+    if (typeof targetId === "number") {
+      setCurrentPopupId(targetId);
+      window.dispatchEvent(
+        new CustomEvent("openAgentPopup", { detail: targetId })
+      );
+    }
+  };
+  
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
 
   // 🧠 12 agents data (unique titles + realistic descriptions)
   const agents = [
@@ -107,6 +137,7 @@ export default function AIAgentCards({
         "Customer record management",
       ],
       image: liza1,
+<<<<<<< HEAD
       images:[liza1,liza4,liza2,liza3],
       tag: "~40% fewer missed calls",
     },
@@ -168,6 +199,13 @@ export default function AIAgentCards({
     },
     {
       id: 3,
+=======
+      images:[liza1,liza2,liza4,liza3],
+      tag: "~40% fewer missed calls",
+    },
+    {
+      id: 2,
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
       name: "Liza",
       title: "Legal Assistant",
       subtitle: "Legal Support Agent",
@@ -231,10 +269,72 @@ export default function AIAgentCards({
         "Role-based access control",
       ],
       image: liza2,
+<<<<<<< HEAD
       images:[liza1,liza4,liza2,liza3],
       tag: "Quick support",
     },
     {
+=======
+      images:[liza1,liza2,liza4,liza3],
+      tag: "Quick support",
+    },
+    {
+      id: 3,
+       name: "Liza",
+      title: "Sales Development Representative",
+     
+      desc: "Confident, persuasive, and goal-driven — Ethan is your AI sales representative fluent in Spanish, English. He connects with prospects naturally, qualifies leads, and schedules meetings that keep your pipeline growing across English-speaking markets.",
+      languages: ["English"],
+      keyTasks: [
+        {
+          icon: (
+            <GrPhone className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Lead Qualification",
+        },
+        {
+          icon: (
+            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Demo Scheduling",
+        },
+        {
+          icon: (
+            <FiDatabase className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "  CRM Integration",
+        },
+        {
+          icon: (
+            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Campaign Engagement",
+        },
+        
+      ],
+      performance: [
+        { label: "Improves outreach conversion", value: "43" },
+        { label: "Shortens lead response time", value: "33%" },
+      ],
+      appearance: [
+        { label: "Outfit", value: "Professional business attire with headset" },
+        {
+          label: "Personality",
+          value:
+            "Confident, persuasive, and goal-driven — maintains natural conversations while expertly guiding prospects through the sales process",
+        },
+      ],
+      compliance: [
+        "GDPR compliant",
+        "TCPA compliant",
+        "Enterprise-grade data privacy",
+      ],
+      image: liza4,
+      images:[liza1,liza2,liza4,liza3],
+      tag: "Automated scheduling",
+    },
+    {
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
       id: 4,
       name: "Liza",
       title: "Care Nurse",
@@ -287,7 +387,11 @@ export default function AIAgentCards({
       ],
     
       image: liza3,
+<<<<<<< HEAD
       images:[liza1,liza4,liza2,liza3],
+=======
+      images:[liza1,liza2,liza4,liza3],
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
       tag: "Better engagement",
     },
 
@@ -517,9 +621,14 @@ export default function AIAgentCards({
       name: "Ethan",
       title: "AI Receptionist",
       subtitle: "Customer Care Assistant",
+<<<<<<< HEAD
       image: ethan1,
       video: ethanVideo1,
       images:[ethan1,ethan3,ethan2,ethan4],
+=======
+      video: ethanVideo1,
+      images:[ethan1,ethan2,ethan3,ethan4],
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
       desc: "A professional and friendly AI receptionist designed to manage calls, schedule meetings, and provide seamless first-point contact for businesses of all sizes.",
 
       languages: ["Arabic", "English"],
@@ -561,6 +670,7 @@ export default function AIAgentCards({
         "Customer data management",
       ],
     },
+<<<<<<< HEAD
     {
       id: 10,
       name: "Ethan",
@@ -618,11 +728,19 @@ export default function AIAgentCards({
     },
      {
       id: 11,
+=======
+     {
+      id: 10,
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
       name: "Ethan",
       title: "Legal Assistant",
       subtitle: "Legal Support Agent",
      image: ethan2,
+<<<<<<< HEAD
      images:[ethan1,ethan3,ethan2,ethan4],
+=======
+      images:[ethan1,ethan2,ethan3,ethan4],
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
       desc: "Analytical, precise, and trustworthy — Ethan is your AI legal assistant designed to support law firms, in-house counsels, and compliance teams. She helps draft documents, organize case files, and manage client communication efficiently while maintaining the highest confidentiality standards.",
       languages: ["English"],
       keyTasks: [
@@ -678,16 +796,79 @@ export default function AIAgentCards({
           "Role-based access control",
         ],
     },
+<<<<<<< HEAD
     
+=======
+    {
+      id: 11,
+      name: "Ethan",
+      title: "Sales Development Representative",
+      subtitle: "Sales Agent (Spanish Speaker)",
+    
+      video: ethanVideo2,
+      images:[ethan1,ethan2,ethan3,ethan4],
+      desc: "Confident, persuasive, and goal-driven — Ethan is your AI sales representative fluent in Spanish, English. He connects with prospects naturally, qualifies leads, and schedules meetings that keep your pipeline growing across English-speaking markets.",
+      languages: ["Spanish, English"],
+      keyTasks: [
+        {
+          icon: (
+            <GrPhone className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Lead Qualification",
+        },
+        {
+          icon: (
+            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Demo Scheduling",
+        },
+        {
+          icon: (
+            <FiDatabase className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "  CRM Integration",
+        },
+        {
+          icon: (
+            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Campaign Engagement",
+        },
+        
+      ],
+      performance: [
+        { label: "Improves outreach conversion", value: "43" },
+        { label: "Shortens lead response time", value: "33%" },
+      ],
+      appearance: [
+        { label: "Outfit", value: "Professional business attire with headset" },
+        {
+          label: "Personality",
+          value:
+            "Confident, persuasive, and goal-driven — maintains natural conversations while expertly guiding prospects through the sales process",
+        },
+      ],
+      compliance: [
+        "GDPR compliant",
+        "TCPA compliant",
+        "Enterprise-grade data privacy",
+      ],
+    },
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
    
     {
       id: 12,
       name: "Ethan",
       title: "Care Nurse",
       subtitle: "Healthcare Assistant (Arabic Speaker)",
+<<<<<<< HEAD
       image: ethan4,
       video: ethanVideo4,
       images:[ethan1,ethan3,ethan2,ethan4],
+=======
+      video: ethanVideo4,
+      images:[ethan1,ethan2,ethan3,ethan4],
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
       desc: "Compassionate, reliable, and precise — Amina is your AI healthcare assistant fluent in Arabic and English. She manages patient communication, appointment coordination, and medication reminders with empathy and professionalism, ensuring every interaction feels human and caring.",
       languages: ["Arabic,English"],
       keyTasks: [
@@ -959,6 +1140,7 @@ export default function AIAgentCards({
     // Continue same pattern for remaining 8 agents (5–12)
   ];
 
+<<<<<<< HEAD
   const roleThumbnailMap = agents.reduce((acc, agentItem) => {
     const roleKey = (agentItem.title || "").trim().toLowerCase();
     if (!roleKey) return acc;
@@ -993,6 +1175,8 @@ export default function AIAgentCards({
     window.dispatchEvent(new CustomEvent("openAgentPopup", { detail: targetId }));
   };
 
+=======
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
   const agent = agents.find((a) => a.id === currentPopupId);
 
   if (!agent) {
@@ -1000,6 +1184,7 @@ export default function AIAgentCards({
       <div className="p-10 text-center text-gray-500">Agent not found.</div>
     );
   }
+<<<<<<< HEAD
 
   // When a circle thumbnail (within the same employee card) is clicked,
   // cycle within the corresponding 4-agent block for that person.
@@ -1034,6 +1219,8 @@ export default function AIAgentCards({
         handleClick: () => handleImageClick(agent.id, index),
       }))
     : [];
+=======
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
   return (
     <div
       className="
@@ -1099,6 +1286,7 @@ export default function AIAgentCards({
   )}
 
   {/* ✅ Final Version — Full width, no cut-off, perfect spacing */}
+<<<<<<< HEAD
 {thumbnailItems.length > 0 && (
   <div className="absolute bottom-3 left-1/2-translate-x-1/2 flex gap-6 space-x-[-6px] sm:space-x-[-8px] z-30">
     {thumbnailItems.map((thumb) => (
@@ -1107,6 +1295,16 @@ export default function AIAgentCards({
         src={thumb.image}
         alt={thumb.alt}
         onClick={thumb.handleClick}
+=======
+{agent.images && agent.images.length > 0 && (
+  <div className="absolute bottom-3  left-48-translate-x-1/2 flex gap-6 space-x-[-6px] sm:space-x-[-8px] z-30">
+    {agent.images.slice(0, 4).map((imgSrc, index) => (
+      <img
+        key={index}
+        src={imgSrc}
+        alt={`Agent ${index + 1}`}
+        onClick={() => handleImageClick(agent.id, index)}
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
         className="
           w-14 h-14 sm:w-16 sm:h-16 lg:w-18 lg:h-18 
           rounded-full overflow-hidden border-2 border-white 

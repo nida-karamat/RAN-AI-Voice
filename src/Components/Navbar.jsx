@@ -13,6 +13,7 @@ const navItems = [
   { name: "How it Works", id: "how-it-works" },
   { name: "Integrations", id: "integrations" },
   { name: "Case Studies", id: "cases" },
+  
 ];
 
 const Navbar = () => {
@@ -22,13 +23,14 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState(navItems[0].id);
   const [calModalOpen, setCalModalOpen] = useState(false);
 
+  // ✅ Smooth scroll handler (desktop + mobile)
   const handleScrollTo = (id) => {
     scroller.scrollTo(id, {
       duration: 600,
       smooth: "easeInOutQuart",
       offset: showBanner ? -120 : -60,
     });
-    setMenuOpen(false);
+    setMenuOpen(false); // close mobile menu after click
   };
 
   useEffect(() => {
@@ -113,7 +115,11 @@ const Navbar = () => {
               <motion.span
                 className="bg-white text-blue-600 p-1 rounded-full flex items-center justify-center"
                 animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               >
                 <FaArrowRight className="w-3 h-3" />
               </motion.span>
@@ -148,7 +154,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 h-120 w-55 bg-white z-50 shadow-lg p-6 flex flex-col gap-4 rounded-md border border-gray-700"
+              className="fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-lg p-6 flex flex-col gap-4 rounded-md border border-gray-700"
             >
               <button onClick={() => setMenuOpen(false)} className="self-end text-gray-700 hover:text-gray-900">
                 <X size={24} />

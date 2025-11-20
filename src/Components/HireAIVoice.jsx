@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,6 +9,17 @@ import background from "../assets/Images/background.jpg";
 import AIAgentCards from "./AIAgentCards";
 import img1 from "../assets/Images/img1.jpg";
 import CalComModal from "./CalComModal";
+=======
+"use client";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaArrowRight } from "react-icons/fa6";
+import BookaDemo from "./BookaDemo";  
+
+import background from "../assets/Images/background.jpg";
+import AIAgentCards from "./AIAgentCards";
+import img1 from "../assets/Images/img1.jpg";
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
 // ✅ Images imports
 import liza from "../assets/Images/liza.png";
 import lizaHover from "../assets/Images/liza1.jpg";
@@ -38,7 +50,10 @@ import amina1 from "../assets/Images/amina/anima1.jpg";
 import amina2 from "../assets/Images/amina/anima2.jpg";
 import amina3 from "../assets/Images/amina/anima3.jpg";
 import amina4 from "../assets/Images/amina/anima4.jpg";
+<<<<<<< HEAD
 import CallScreen from "./CallScreen";
+=======
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
 
 // ✅ AI Employees Data
 const aiEmployees = [
@@ -97,11 +112,18 @@ const badgeVariant = {
 };
 
 const HireAIVoice = () => {
+<<<<<<< HEAD
   // const [showDemoForm, setShowDemoForm] = useState(false);
  const [callScreen, setCallScreen] = useState({ show: false, caller: null });
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
   const [calModalOpen, setCalModalOpen] = useState(false);
+=======
+  const [showDemoForm, setShowDemoForm] = useState(false);
+
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
   // Temporary per-card preview while hovering a circle
   const [hoverPreviewByEmployee, setHoverPreviewByEmployee] = useState({});
   // Persistent per-card chosen hover image (set on click)
@@ -114,6 +136,7 @@ const HireAIVoice = () => {
     }
   }, [activeIndex]);
   const [activeCircle, setActiveCircle] = useState(null);
+<<<<<<< HEAD
 
   const openCallScreen = (employeeIndex = null) => {
     const fallbackEmployee = aiEmployees[0];
@@ -129,6 +152,8 @@ const HireAIVoice = () => {
       },
     });
   };
+=======
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
 
   return (
     <motion.section
@@ -243,10 +268,17 @@ const HireAIVoice = () => {
             }}
             whileTap={{ scale: 0.95 }}
             className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg border border-gray-500 bg-white text-gray-800 font-medium hover:bg-gray-50 transition-shadow shadow-md flex items-center justify-center gap-2"
+<<<<<<< HEAD
             onClick={() => setCalModalOpen(true)}
           >
             Let's Talk
           </motion.button>
+=======
+          >
+            Book A Demo
+          </motion.button>
+
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
           <motion.button
             whileHover={{
               scale: 1.05,
@@ -362,10 +394,17 @@ const HireAIVoice = () => {
                     setActiveCircle(`${employee.id}-${i}`);
 
                     // ✅ Persist this image as the card's chosen hover image
+<<<<<<< HEAD
                     // setCustomHoverImageByEmployee((prev) => ({
                     //   ...prev,
                     //   [employee.id]: img,
                     // }));
+=======
+                    setCustomHoverImageByEmployee((prev) => ({
+                      ...prev,
+                      [employee.id]: img,
+                    }));
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
                   }}
                   onMouseEnter={(e) => {
                     e.stopPropagation();
@@ -457,6 +496,7 @@ const HireAIVoice = () => {
 
         {/* --- Popups --- */}
       <AnimatePresence>
+<<<<<<< HEAD
         {/* {showDemoForm && <BookaDemo onClose={() => setShowDemoForm(false)} />} */}
         {callScreen.show && (
           <div className="fixed inset-0 z-60 flex items-start justify-center p-6 bg-black/50">
@@ -468,6 +508,9 @@ const HireAIVoice = () => {
             </div>
           </div>
         )}
+=======
+        {showDemoForm && <BookaDemo onClose={() => setShowDemoForm(false)} />}
+>>>>>>> e5a24692ff6f68090d09a926a3e9a2a7693509c0
 
         {selectedEmployee && (
           <motion.div

@@ -183,6 +183,7 @@ const App = () => {
       </div>
     );
   }
+  
 
   // ----------------------------
   // MAIN CONTENT
@@ -235,7 +236,6 @@ const App = () => {
       <section id="cases">
         <ReadytoTransformBusiness />
       </section>
-
       <Footer />
     </motion.div>
   );
