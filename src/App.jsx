@@ -10,118 +10,183 @@ import HowRanWorks from "./Components/HowRanWork";
 import ReadytoTransformBusiness from "./Components/ReadytoTransformBusiness";
 import Footer from "./Components/Footer";
 import Integrate from "./Components/Integrate";
-import Logo from "./assets/Images/logo.jpg";
+import logo from "./assets/Images/logo.jpg";
+import ScrollToHashElement from "./Components/ScrollToHashElement";
+import CallScreen from "./Components/CallScreen";
+import background from "./assets/Images/background.jpg";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [textIndex, setTextIndex] = useState(0);
+  const [callModal, setCallModal] = useState({ show: false, caller: null });
 
+  const loadingMessages = [
+    "Initializing RAN Voice systems...",
+    "Loading neural voice modules...",
+    "Calibrating smart workflows...",
+    "Preparing your AI experience...",
+  ];
+
+  // --- Boot Voice + Loader ---
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 5000);
-    return () => clearTimeout(timer);
+    if (typeof window === "undefined" || !window.speechSynthesis) {
+      const fallback = setTimeout(() => setLoading(false), 6000);
+      return () => clearTimeout(fallback);
+    }
+
+    const synth = window.speechSynthesis;
+    const greeting = "Welcome to RAN Voice — preparing your experience...";
+
+    const preferredVoices = [
+      "Google UK English Female",
+      "Google US English",
+      "Microsoft Aria Online (Natural) - English (United States)",
+      "Microsoft Zira Desktop - English (United States)",
+      "Jenny (Natural) - English (United States)",
+    ];
+
+    const feminineWords = [
+      "female",
+      "aria",
+      "jenny",
+      "sofia",
+      "sonia",
+      "olivia",
+      "sara",
+      "zira",
+    ];
+
+    const speakGreeting = () => {
+      const utter = new SpeechSynthesisUtterance(greeting);
+      utter.rate = 0.82;
+      utter.pitch = 1.15;
+      utter.volume = 0.92;
+
+      const voices = synth.getVoices();
+      const voice =
+        voices.find((v) => preferredVoices.includes(v.name)) ||
+        voices.find((v) =>
+          feminineWords.some((w) => v.name.toLowerCase().includes(w))
+        ) ||
+        voices.find((v) => v.lang?.toLowerCase().startsWith("en"));
+
+      if (voice) utter.voice = voice;
+
+      synth.cancel();
+      synth.speak(utter);
+    };
+
+    if (synth.getVoices().length === 0) {
+      synth.addEventListener("voiceschanged", speakGreeting, { once: true });
+    } else {
+      speakGreeting();
+    }
+
+    const timer = setTimeout(() => setLoading(false), 6000);
+    return () => {
+      synth.cancel();
+      clearTimeout(timer);
+    };
   }, []);
 
+  // --- Typewriter effect ---
+  useEffect(() => {
+    if (loading) {
+      const interval = setInterval(() => {
+        setTextIndex((prev) => (prev + 1) % loadingMessages.length);
+      }, 1500);
+      return () => clearInterval(interval);
+    }
+  }, [loading]);
+
+  // --- Listen for CallScreen open event ---
+  useEffect(() => {
+    const handler = (e) => {
+      setCallModal({ show: true, caller: e?.detail || null });
+    };
+    window.addEventListener("openCallScreen", handler);
+    return () => window.removeEventListener("openCallScreen", handler);
+  }, []);
+
+  // ----------------------------
+  // LOADING SCREEN
+  // ----------------------------
   if (loading) {
     return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0f1f] via-black to-[#0a0f1f] overflow-hidden text-center px-4">
-        {/* Floating gradient background waves */}
+      <div
+        className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 text-center"
+        style={{
+          backgroundImage: `linear-gradient(135deg,rgb(88, 131, 204) 0%,rgb(151, 176, 221) 35%,rgb(127, 167, 228) 70%,rgb(149, 228, 228) 100%)`,
+        }}
+      >
+        {/* Logo Animation */}
         <motion.div
-          className="absolute inset-0 opacity-40"
+          initial={{ y: 140, scale: 0.85, opacity: 0 }}
           animate={{
-            background: [
-              "radial-gradient(circle at 20% 30%, #3b82f6 0%, transparent 70%)",
-              "radial-gradient(circle at 80% 70%, #8b5cf6 0%, transparent 70%)",
-              "radial-gradient(circle at 40% 50%, #3b82f6 0%, transparent 70%)",
-            ],
+            y: [140, 25, 0],
+            scale: [0.85, 1, 1.12],
+            opacity: [0, 0.9, 1],
           }}
           transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
+            duration: 1.5,
+            ease: [0.22, 1, 0.36, 1],
+            times: [0, 0.65, 1],
           }}
-        />
-
-        {/* Floating glow particles */}
-        <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <motion.span
-              key={i}
-              className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                scale: 0.5 + Math.random(),
-                opacity: 0.3 + Math.random() * 0.7,
-              }}
-              animate={{
-                y: [null, Math.random() * window.innerHeight],
-                x: [null, Math.random() * window.innerWidth],
-                opacity: [0.2, 0.9, 0.2],
-                scale: [1, 1.6, 1],
-              }}
-              transition={{
-                duration: 6 + Math.random() * 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Rotating glowing rings around logo */}
-        <motion.div
-          className="absolute w-60 h-60 rounded-full border-2 border-blue-500 blur-[2px] opacity-60"
-          animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute w-44 h-44 rounded-full border-2 border-indigo-500 blur-[3px] opacity-40"
-          animate={{ rotate: -360, scale: [1, 1.3, 1] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-        />
-
-        {/* Main logo animation */}
-        <motion.div
-          initial={{ scale: 0.6, opacity: 0, rotate: 0 }}
-          animate={{
-            scale: [1, 1.25, 1],
-            opacity: [0.5, 1, 0.8],
-            rotate: [0, 10, -10, 0],
-          }}
-          transition={{
-            duration: 3,
-            ease: "easeInOut",
-            repeat: Infinity,
-          }}
-          className="relative z-10 rounded-full shadow-2xl"
         >
           <img
-            src={Logo}
+            src={logo}
             alt="Company Logo"
-            className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain rounded-full bg-white p-3 shadow-lg"
+            className="w-32 h-32 sm:w-44 sm:h-44 md:w-56 md:h-56 object-contain drop-shadow-[0_0_12px_rgba(59,130,246,0.5)] mt-8"
           />
         </motion.div>
 
-        {/* Text shimmer + fade (responsive & centered) */}
+        {/* Dynamic Loading Text */}
         <motion.p
-          className="mt-8 sm:mt-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-600 text-base sm:text-lg md:text-xl tracking-[0.15em] sm:tracking-[0.2em] uppercase font-semibold z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0.2, 1, 0.2] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          key={textIndex}
+          className="mt-8 text-blue-700 text-base sm:text-lg md:text-xl font-semibold tracking-wide uppercase"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          Preparing Your Experience...
+          {loadingMessages[textIndex]}
         </motion.p>
 
-        {/* Bottom fade light wave */}
+        {/* Mountain silhouette */}
+        <div className="absolute inset-x-0 bottom-0 h-40 sm:h-48 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-300 via-blue-500 to-transparent"></div>
+          <svg
+            className="w-full h-full opacity-80"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id="ran-mountain-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#c7d2fe" stopOpacity="0.9" />
+                <stop offset="45%" stopColor="#93c5fd" stopOpacity="0.95" />
+                <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.95" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#ran-mountain-gradient)"
+              d="M0,256L120,229.3C240,203,480,149,720,149.3C960,149,1200,203,1320,229.3L1440,256L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+
+        {/* Subtle wave glow bottom */}
         <motion.div
-          className="absolute bottom-0 w-full h-32 sm:h-40 bg-gradient-to-t from-blue-500/20 to-transparent blur-3xl"
-          animate={{ opacity: [0.2, 0.6, 0.2], scale: [1, 1.1, 1] }}
-          transition={{ duration: 3, repeat: Infinity }}
+          className="absolute bottom-0 w-full h-40 bg-gradient-to-t from-blue-300/40 to-transparent blur-3xl"
+          animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.1, 1] }}
+          transition={{ duration: 4, repeat: Infinity }}
         />
       </div>
     );
   }
 
-  // After Loader
+  // ----------------------------
+  // MAIN CONTENT
+  // ----------------------------
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
@@ -129,17 +194,29 @@ const App = () => {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="overflow-x-hidden"
     >
+      <ScrollToHashElement />
+
+      {/* Call Screen Modal */}
+      {callModal.show && (
+        <div className="fixed inset-0 z-60 flex items-start justify-center p-6 bg-black/50">
+          <div className="w-full max-w-6xl">
+            <CallScreen
+              caller={callModal.caller}
+              onClose={() => setCallModal({ show: false, caller: null })}
+            />
+          </div>
+        </div>
+      )}
+
       <Layout />
 
       <section id="industries">
         <HireAIVoice />
       </section>
 
-      <section>
-        <BusinessesLoves />
-      </section>
+      <BusinessesLoves />
 
-      <section id="how">
+      <section id="industry-insights">
         <AIPoweredVoice />
       </section>
 

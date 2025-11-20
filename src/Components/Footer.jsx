@@ -23,7 +23,7 @@ export default function RanVoiceFooter() {
   };
 
   return (
-    <footer className="bg-white overflow-hidden ">
+    <footer className="bg-white overflow-hidden">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -48,7 +48,7 @@ export default function RanVoiceFooter() {
                   alt="Logo"
                   className="h-20 w-auto rounded-md object-cover"
                 />
-                <span className="font-bold mt-7 text-blue-600 ">AI</span>
+               
               </span>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed max-w-xs mx-auto sm:mx-0">
@@ -57,17 +57,20 @@ export default function RanVoiceFooter() {
             </p>
           </motion.div>
 
-          {/* Middle Column - Solutions */}
-          <motion.div variants={itemVariants} className="text-center sm:text-left">
+          {/* Middle Column - Solutions (Updated with external links) */}
+          <motion.div
+            variants={itemVariants}
+            className="text-center sm:text-left"
+          >
             <h3 className="font-bold text-gray-900 mb-4 text-base sm:text-lg">
               Solutions
             </h3>
             <ul className="space-y-2">
               {[
-                "AI Voice Assistant",
-                "Automation Tools",
-                "Industry Insights",
-                "Machine Learning",
+                { name: "AI Voice Assistant", link: "https://ran-ai.com/#ai-voice" },
+                { name: "Automation Tools", link: "https://ran-ai.com/#automation-tools" },
+                { name: "Industry Insights", link: "https://ran-ai.com/#industry-insights" },
+                { name: "Machine Learning", link: "https://ran-ai.com/#machine-learning" },
               ].map((item, i) => (
                 <motion.li
                   key={i}
@@ -75,10 +78,12 @@ export default function RanVoiceFooter() {
                   transition={{ type: "spring", stiffness: 200 }}
                 >
                   <a
-                    href="#"
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-600 hover:text-blue-600 text-sm transition-colors"
                   >
-                    {item}
+                    {item.name}
                   </a>
                 </motion.li>
               ))}
@@ -86,27 +91,38 @@ export default function RanVoiceFooter() {
           </motion.div>
 
           {/* Right Column - Company */}
-          <motion.div variants={itemVariants} className="text-center sm:text-left">
-            <h3 className="font-bold text-gray-900 mb-4 text-base sm:text-lg">
-              Company
-            </h3>
-            <ul className="space-y-2">
-              {["About Us", "Careers", "Blog", "Contact"].map((item, i) => (
-                <motion.li
-                  key={i}
-                  whileHover={{ x: 4 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                >
-                  <a
-                    href="#"
-                    className="text-gray-600 hover:text-blue-600 text-sm transition-colors"
-                  >
-                    {item}
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+       <motion.div
+  variants={itemVariants}
+  className="text-center sm:text-left"
+>
+  <h3 className="font-bold text-gray-900 mb-4 text-base sm:text-lg">
+    Company
+  </h3>
+  <ul className="space-y-2">
+    {[
+      { name: "About Us", link: "https://ran-ai.com/#about-us" },
+      { name: "Careers", link: "https://ran-ai.com/#careers" },
+      { name: "Blog", link: "https://ran-ai.com/#blog" },
+      { name: "Contact", link: "https://ran-ai.com/#contact" },
+    ].map((item, i) => (
+      <motion.li
+        key={i}
+        whileHover={{ x: 4 }}
+        transition={{ type: "spring", stiffness: 200 }}
+      >
+        <a
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-blue-600 text-sm transition-colors"
+        >
+          {item.name}
+        </a>
+      </motion.li>
+    ))}
+  </ul>
+</motion.div>
+
         </motion.div>
 
         {/* ======== Bottom Bar ======== */}
@@ -118,7 +134,7 @@ export default function RanVoiceFooter() {
             © 2025 Ran AI. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center sm:justify-end items-center gap-4 sm:gap-6">
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
+            {["Privacy Policy", "| Terms of Service", "| Cookie Policy"].map(
               (item, i) => (
                 <motion.a
                   key={i}
