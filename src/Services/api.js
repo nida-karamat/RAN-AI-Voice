@@ -1,31 +1,54 @@
-const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL; // change in .env file
+import axios from "axios";
 
-// Generic helper for requests
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+
+// Axios Instance
+const apiClient = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Generic Request Helper
 async function request(path, options = {}) {
   try {
-    const res = await fetch(`${BASE_URL}${path}`, {
-      headers: { "Content-Type": "application/json", ...(options.headers || {}) },
-      ...options,
+    const { method = "GET", data, headers = {}, params } = options;
+
+    const response = await apiClient.request({
+      url: path,
+      method,
+      data,
+      params,
+      headers,
     });
 
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.error || `Request failed: ${res.status}`);
-    }
-
-    return await res.json();
+    return response.data;
   } catch (error) {
     console.error("API error:", error);
-    throw error;
+
+    const message =
+      error.response?.data?.error ||
+      error.message ||
+      `Request failed: ${error.response?.status}`;
+    throw new Error(message);
   }
 }
 
-// Create a Retell Web Call
-export async function createRetellWebCall() {
-  return request("/api/retell/create-web-call/", { method: "POST" });
+// ✅ Create Retell Web Call (with updated field company_email)
+export async function createRetellWebCall(formData) {
+  return request("/api/retell/create-web-call/", {
+    method: "POST",
+    data: {
+      name: formData.name,
+      company_email: formData.company_email, 
+      phone: formData.phone,
+      industry: formData.industry,
+    },
+  });
 }
 
-// (Optional) You could add more routes later:
+// End Call Session
 export async function endCallSession(callId) {
   return request(`/api/retell/end-call/${callId}`, { method: "POST" });
 }

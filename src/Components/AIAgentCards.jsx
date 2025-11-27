@@ -19,11 +19,12 @@ import { TbWorld } from "react-icons/tb";
 import liza1 from "../assets/Images/liza/liza1.jpg";
 import liza2 from "../assets/Images/liza/liza2.jpg";
 import liza3 from "../assets/Images/liza/liza3.jpg";
-import liza4 from "../assets/Images/liza/liza4.jpg";
+import liza4 from "../assets/Images/slider/liza3.jpg";
 import diego1 from "../assets/Images/diego/diego1.jpg";
 import diego2 from "../assets/Images/diego/diego2.jpg";
 import diego3 from "../assets/Images/diego/diego3.jpg";
-import diego4 from "../assets/Images/diego/diego4.jpg";
+import diego33 from "../assets/Images/slider/diego3.jpg";
+import diego4 from "../assets/Images/slider/diego4.jpg";
 import ethan1 from "../assets/Images/ethan/ethan1.jpg";
 import ethan2 from "../assets/Images/ethan/ethan2.jpg";
 import ethan3 from "../assets/Images/ethan/ethan3.jpg";
@@ -33,16 +34,28 @@ import amina2 from "../assets/Images/amina/anima2.jpg";
 import amina3 from "../assets/Images/amina/anima3.jpg";
 import amina33 from "../assets/Images/amina/amina33.jpg";
 import amina4 from "../assets/Images/amina/anima4.jpg";
-import ethanVideo1 from "../assets/Videos/ethanVideo1.mp4";
+import ethanVideo1 from "../assets/Videos/ethanVideo1.mov";
 import ethanVideo2 from "../assets/Videos/ethanVideo2.mp4";
 import ethanVideo4 from "../assets/Videos/ethanVideo4.mp4";
-import diego11 from "../assets/Images/diego/diego11.jpg";
-import diego22 from "../assets/Images/diego/diego22.jpg";
-import diego33 from "../assets/Images/diego/diego33.jpg";
+import diego11 from "../assets/Images/slider/diego1.jpg";
+import diego22 from "../assets/Images/slider/diego3.jpg";
+// import diego33 from "../assets/Images/diego/diego33.jpg";
+import diegoVideo1 from "../assets/Videos/diegoVideo1.mp4"
+import diegoVideo2 from "../assets/Videos/diegoVideo2.mp4"
+import diegoVideo4 from "../assets/Videos/diegoVideo4.mp4"
+import lizaVideo2 from "../assets/Videos/lizaVideo2.mp4"
+import lizaVideo3 from "../assets/Videos/lizaVideo3.mp4"
+import lizaVideo4 from "../assets/Videos/lizaVideo4.mp4"
+import aminaVideo1 from "../assets/Videos/amina1.mov";
+import aminaVideo4 from "../assets/Videos/aminaVideo4.mp4"
+import aminaVideo2 from "../assets/Videos/aminaVideo2.mp4"
+import aminaVideo3 from "../assets/Videos/aminaVideo3.mp4"
+import lizaVideo1 from "../assets/Videos/liza1.mov";
+import diegoVideo3 from "../assets/Videos/diegoVideo3.mov"
 
 export default function AIAgentCards({
   popupId,
-  onClose,
+  onClose,  
   roleScopedThumbnails = false,
 }) {
   const [activeTab, setActiveTab] = useState("description");
@@ -51,7 +64,7 @@ export default function AIAgentCards({
   const [currentPopupId, setCurrentPopupId] = useState(popupId);
 
   useEffect(() => {
-    setCurrentPopupId(popupId);
+    setCurrentPopupId(popupId); 
   }, [popupId]);
 
   useEffect(() => {
@@ -107,71 +120,15 @@ export default function AIAgentCards({
         "Customer record management",
       ],
       image: liza1,
-      images:[liza1,liza4,liza2,liza3],
+      video: lizaVideo1,
+      images:[liza1,liza2,liza3,liza4],
       tag: "~40% fewer missed calls",
     },
-   
     {
       id: 2,
-       name: "Liza",
-      title: "Sales Development Representative",
-     
-      desc: "Confident, persuasive, and goal-driven — Ethan is your AI sales representative fluent in Spanish, English. He connects with prospects naturally, qualifies leads, and schedules meetings that keep your pipeline growing across English-speaking markets.",
-      languages: ["English"],
-      keyTasks: [
-        {
-          icon: (
-            <GrPhone className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
-          ),
-          label: "Lead Qualification",
-        },
-        {
-          icon: (
-            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
-          ),
-          label: "Demo Scheduling",
-        },
-        {
-          icon: (
-            <FiDatabase className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
-          ),
-          label: "  CRM Integration",
-        },
-        {
-          icon: (
-            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
-          ),
-          label: "Campaign Engagement",
-        },
-        
-      ],
-      performance: [
-        { label: "Improves outreach conversion", value: "43" },
-        { label: "Shortens lead response time", value: "33%" },
-      ],
-      appearance: [
-        { label: "Outfit", value: "Professional business attire with headset" },
-        {
-          label: "Personality",
-          value:
-            "Confident, persuasive, and goal-driven — maintains natural conversations while expertly guiding prospects through the sales process",
-        },
-      ],
-      compliance: [
-        "GDPR compliant",
-        "TCPA compliant",
-        "Enterprise-grade data privacy",
-      ],
-      image: liza4,
-      images:[liza1,liza4,liza2,liza3],
-      tag: "Automated scheduling",
-    },
-    {
-      id: 3,
       name: "Liza",
       title: "Legal Assistant",
       subtitle: "Legal Support Agent",
-     
       desc: "Analytical, precise, and trustworthy — Ethan is your AI legal assistant designed to support law firms, in-house counsels, and compliance teams. She helps draft documents, organize case files, and manage client communication efficiently while maintaining the highest confidentiality standards.",
       languages: ["Arabic ,English"],
       keyTasks: [
@@ -231,9 +188,67 @@ export default function AIAgentCards({
         "Role-based access control",
       ],
       image: liza2,
-      images:[liza1,liza4,liza2,liza3],
+      video: lizaVideo2,
+      images:[liza1,liza2,liza4,liza3],
       tag: "Quick support",
     },
+    {
+      id: 3,
+       name: "Liza",
+       
+      title: "Sales Development Representative",
+      video: lizaVideo3,
+      desc: "Confident, persuasive, and goal-driven — Ethan is your AI sales representative fluent in Spanish, English. He connects with prospects naturally, qualifies leads, and schedules meetings that keep your pipeline growing across English-speaking markets.",
+      languages: ["English"],
+      keyTasks: [
+        {
+          icon: (
+            <GrPhone className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Lead Qualification",
+        },
+        {
+          icon: (
+            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Demo Scheduling",
+        },
+        {
+          icon: (
+            <FiDatabase className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "  CRM Integration",
+        },
+        {
+          icon: (
+            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Campaign Engagement",
+        },
+        
+      ],
+      performance: [
+        { label: "Improves outreach conversion", value: "43" },
+        { label: "Shortens lead response time", value: "33%" },
+      ],
+      appearance: [
+        { label: "Outfit", value: "Professional business attire with headset" },
+        {
+          label: "Personality",
+          value:
+            "Confident, persuasive, and goal-driven — maintains natural conversations while expertly guiding prospects through the sales process",
+        },
+      ],
+      compliance: [
+        "GDPR compliant",
+        "TCPA compliant",
+        "Enterprise-grade data privacy",
+      ],
+      image: liza4,
+      images:[liza1,liza2,liza4,liza3],
+      tag: "Automated scheduling",
+    },
+   
     {
       id: 4,
       name: "Liza",
@@ -287,7 +302,8 @@ export default function AIAgentCards({
       ],
     
       image: liza3,
-      images:[liza1,liza4,liza2,liza3],
+      images:[liza1,liza2,liza4,liza3],
+      video:lizaVideo4,
       tag: "Better engagement",
     },
 
@@ -297,6 +313,7 @@ export default function AIAgentCards({
       title: "AI Receptionist",
       subtitle: "Customer Care Assistant",
       image: diego11,
+      video: diegoVideo1,
       desc: "A professional and friendly AI receptionist designed to manage calls, schedule meetings, and provide seamless first-point contact for businesses of all sizes.",
       images:[diego1,diego4,diego2,diego3],
 
@@ -345,6 +362,7 @@ export default function AIAgentCards({
      title: " Legal Assistant",
       subtitle: "IT Support Agent(American Speaker)",
       image: diego4,
+      video: diegoVideo2,
       images:[diego1,diego4,diego2,diego3],
       desc: "Analytical, precise, and trustworthy — Ethan is your AI legal assistant designed to support law firms, in-house counsels, and compliance teams. She helps draft documents, organize case files, and manage client communication efficiently while maintaining the highest confidentiality standards.",
       languages: ["Arabic ,English"],
@@ -410,6 +428,7 @@ export default function AIAgentCards({
       name: "Diego",
       title: "Sales Development Representative",
       image: diego22,
+      video: diegoVideo3,
       images:[diego1,diego4,diego2,diego3],
       subtitle: "Sales Representative (Spanish Speaker)",
       desc: "Confident, persuasive, and goal-driven — Ethan is your AI sales representative fluent in Spanish, English. He connects with prospects naturally, qualifies leads, and schedules meetings that keep your pipeline growing across English-speaking markets.",
@@ -465,7 +484,8 @@ export default function AIAgentCards({
       images:[diego1,diego4,diego2,diego3],
       title: "Care Nurse",
       subtitle: "Healthcare Assistant (Arabic Speaker)",
-      image: diego33,
+      image: diego3,
+      video: diegoVideo4,
       desc: "Compassionate, reliable, and precise — Amina is your AI healthcare assistant fluent in Arabic and English. She manages patient communication, appointment coordination, and medication reminders with empathy and professionalism, ensuring every interaction feels human and caring.",
       languages: ["Arabic,English"],
       keyTasks: [
@@ -519,7 +539,7 @@ export default function AIAgentCards({
       subtitle: "Customer Care Assistant",
       image: ethan1,
       video: ethanVideo1,
-      images:[ethan1,ethan3,ethan2,ethan4],
+      images:[ethan1,ethan2,ethan3,ethan4],
       desc: "A professional and friendly AI receptionist designed to manage calls, schedule meetings, and provide seamless first-point contact for businesses of all sizes.",
 
       languages: ["Arabic", "English"],
@@ -561,68 +581,14 @@ export default function AIAgentCards({
         "Customer data management",
       ],
     },
-    {
-      id: 10,
-      name: "Ethan",
-      title: "Sales Development Representative",
-      subtitle: "Sales Agent (Spanish Speaker)",
-      image: ethan3,
-      video: ethanVideo2,
-      images:[ethan1,ethan3,ethan2,ethan4],
-      desc: "Confident, persuasive, and goal-driven — Ethan is your AI sales representative fluent in Spanish, English. He connects with prospects naturally, qualifies leads, and schedules meetings that keep your pipeline growing across English-speaking markets.",
-      languages: ["Spanish, English"],
-      keyTasks: [
-        {
-          icon: (
-            <GrPhone className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
-          ),
-          label: "Lead Qualification",
-        },
-        {
-          icon: (
-            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
-          ),
-          label: "Demo Scheduling",
-        },
-        {
-          icon: (
-            <FiDatabase className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
-          ),
-          label: "  CRM Integration",
-        },
-        {
-          icon: (
-            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
-          ),
-          label: "Campaign Engagement",
-        },
-        
-      ],
-      performance: [
-        { label: "Improves outreach conversion", value: "43" },
-        { label: "Shortens lead response time", value: "33%" },
-      ],
-      appearance: [
-        { label: "Outfit", value: "Professional business attire with headset" },
-        {
-          label: "Personality",
-          value:
-            "Confident, persuasive, and goal-driven — maintains natural conversations while expertly guiding prospects through the sales process",
-        },
-      ],
-      compliance: [
-        "GDPR compliant",
-        "TCPA compliant",
-        "Enterprise-grade data privacy",
-      ],
-    },
+   
      {
-      id: 11,
+      id: 10,
       name: "Ethan",
       title: "Legal Assistant",
       subtitle: "Legal Support Agent",
      image: ethan2,
-     images:[ethan1,ethan3,ethan2,ethan4],
+     images:[ethan1,ethan2,ethan3,ethan4],
       desc: "Analytical, precise, and trustworthy — Ethan is your AI legal assistant designed to support law firms, in-house counsels, and compliance teams. She helps draft documents, organize case files, and manage client communication efficiently while maintaining the highest confidentiality standards.",
       languages: ["English"],
       keyTasks: [
@@ -678,7 +644,61 @@ export default function AIAgentCards({
           "Role-based access control",
         ],
     },
-    
+     {
+      id: 11,
+      name: "Ethan",
+      title: "Sales Development Representative",
+      subtitle: "Sales Agent (Spanish Speaker)",
+      image: ethan3,
+      video: ethanVideo2,
+      images:[ethan1,ethan2,ethan3,ethan4],
+      desc: "Confident, persuasive, and goal-driven — Ethan is your AI sales representative fluent in Spanish, English. He connects with prospects naturally, qualifies leads, and schedules meetings that keep your pipeline growing across English-speaking markets.",
+      languages: ["Spanish, English"],
+      keyTasks: [
+        {
+          icon: (
+            <GrPhone className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Lead Qualification",
+        },
+        {
+          icon: (
+            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Demo Scheduling",
+        },
+        {
+          icon: (
+            <FiDatabase className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "  CRM Integration",
+        },
+        {
+          icon: (
+            <RiCalendarCheckLine className="w-7 h-7 text-blue-600 bg-blue-100 p-1 rounded-lg" />
+          ),
+          label: "Campaign Engagement",
+        },
+        
+      ],
+      performance: [
+        { label: "Improves outreach conversion", value: "43" },
+        { label: "Shortens lead response time", value: "33%" },
+      ],
+      appearance: [
+        { label: "Outfit", value: "Professional business attire with headset" },
+        {
+          label: "Personality",
+          value:
+            "Confident, persuasive, and goal-driven — maintains natural conversations while expertly guiding prospects through the sales process",
+        },
+      ],
+      compliance: [
+        "GDPR compliant",
+        "TCPA compliant",
+        "Enterprise-grade data privacy",
+      ],
+    },
    
     {
       id: 12,
@@ -687,7 +707,7 @@ export default function AIAgentCards({
       subtitle: "Healthcare Assistant (Arabic Speaker)",
       image: ethan4,
       video: ethanVideo4,
-      images:[ethan1,ethan3,ethan2,ethan4],
+      images:[ethan1,ethan2,ethan3,ethan4],
       desc: "Compassionate, reliable, and precise — Amina is your AI healthcare assistant fluent in Arabic and English. She manages patient communication, appointment coordination, and medication reminders with empathy and professionalism, ensuring every interaction feels human and caring.",
       languages: ["Arabic,English"],
       keyTasks: [
@@ -741,6 +761,7 @@ export default function AIAgentCards({
       title: " AI Receptionist",
       subtitle: "Customer Care Assistant",
       image: amina1,
+      video: aminaVideo1,
       images:[amina1,amina2,amina3,amina4],
       desc: "A professional and friendly AI receptionist designed to manage calls, schedule meetings, and provide seamless first-point contact for businesses of all sizes.",
       languages: ["English", "Arabic"],
@@ -790,6 +811,7 @@ export default function AIAgentCards({
       title: "Legal Assistant",
       subtitle: "Legal Support Agent",
       image: amina2,
+      video: aminaVideo2,
       desc: "Analytical, precise, and trustworthy — Ethan is your AI legal assistant designed to support law firms, in-house counsels, and compliance teams. She helps draft documents, organize case files, and manage client communication efficiently while maintaining the highest confidentiality standards.",
       languages: ["Arabic ,English"],
       keyTasks: [
@@ -856,6 +878,7 @@ export default function AIAgentCards({
       subtitle: "Sales Agent (English Speaker)",
       image: amina33,
       images:[amina1,amina2,amina3,amina4],
+      video: aminaVideo3,
       desc: "Confident, persuasive, and naturally engaging — liza is your AI sales representative built to connect with prospects, qualify leads, and book meetings with authenticity and precision. She blends charm with strategic communication, making every outreach feel personal and impactful.",
       languages: ["Arabic,English"],
       keyTasks: [
@@ -908,6 +931,7 @@ export default function AIAgentCards({
       title: "Care Nurse",
       subtitle: "Healthcare Assistant (Arabic Speaker)",
       image: amina4,
+      video: aminaVideo4,
       images:[amina1,amina2,amina3,amina4],
       desc: "Compassionate, reliable, and precise — Amina is your AI healthcare assistant fluent in Arabic and English. She manages patient communication, appointment coordination, and medication reminders with empathy and professionalism, ensuring every interaction feels human and caring.",
       languages: ["Arabic,English"],
@@ -1134,7 +1158,7 @@ export default function AIAgentCards({
               className="
     text-base sm:text-lg md:text-xl lg:text-2xl
     font-bold text-gray-900 text-left
-    mt-2 sm:mt-4 md:mt-6 lg:-mt-10
+    mt-2 sm:mt-4 md:mt-6 lg:mt-5
   "
             >
               {agent.name} - {agent.title}
@@ -1209,7 +1233,7 @@ export default function AIAgentCards({
               </>
             ) : (
               <div className="space-y-3">
-                <div>
+                {/* <div>
                   <h4 className="font-medium text-gray-900">
                     Appearance & Personality
                   </h4>
@@ -1231,9 +1255,9 @@ export default function AIAgentCards({
                         </li>
                       ))}
                     </ul>
-                  ) : (
-                    // ✅ if it's an object (not array)
-                    <ul className="mt-1 space-y-1 text-gray-500">
+                  ) : ( */}
+                    
+                    {/* <ul className="mt-1 space-y-1 text-gray-500">
                       {Object.entries(agent.appearance).map(
                         ([label, value], i) => (
                           <li key={i}>
@@ -1246,7 +1270,7 @@ export default function AIAgentCards({
                       )}
                     </ul>
                   )}
-                </div>
+                </div> */}
 
                 <div>
                   <h4 className="font-medium text-gray-900">Compliance</h4>

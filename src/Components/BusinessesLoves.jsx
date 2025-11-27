@@ -68,7 +68,7 @@ const BusinessesLove = () => {
           {features.map((item, index) => (
             <motion.div
               key={item.id}
-              className="relative bg-blue-50 border border-blue-200 rounded-2xl p-6 flex flex-col items-start text-left shadow-md overflow-hidden transition-all duration-300"
+              className="relative bg-blue-50 border border-blue-300 rounded-2xl p-6 flex flex-col items-start text-left shadow-md overflow-hidden transition-all duration-300"
               whileInView={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 40 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}

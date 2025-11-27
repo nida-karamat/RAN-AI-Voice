@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { motion } from "framer-motion";
@@ -43,7 +42,7 @@ const aiEmployees = [
     desc: "Provide multilingual patient support around the clock, delivering sensitive, accurate responses that enhance care without delays or confusion.",
     icon: <IoMdCheckmarkCircleOutline className="text-blue-600 w-4 h-4" />,
     skills: ["Appointment Reminders", "Health Screening", "Prescription Refills"],
-    imgs: [amina2, ethan2,liza2,diego2],
+    imgs: [amina2, ethan2, liza2, diego2],
     tag: "Boost attendance ~35%",
     label: "Care Nurse",
   },
@@ -53,17 +52,17 @@ const aiEmployees = [
     desc: "Engage prospects 24/7 by qualifying leads, booking demos, and following up consistently—driving growth without fatigue or scheduling gaps.",
     icon: <IoMdCheckmarkCircleOutline className="text-blue-600 w-4 h-4" />,
     skills: ["Lead Qualification", "CRM Integration", "Automated Follow-ups"],
-    imgs: [liza3, ethan3, amina3,diego3],
+    imgs: [liza3, ethan3, amina3, diego3],
     tag: "~60% more leads",
     label: "AI Sales Executive",
   },
   {
     id: 4,
-    title: "Support Agent",
-    desc: "Resolve customer issues in real time across multiple languages, ensuring fast, consistent support that never pauses or compromises quality.",
+    title: "Legal Assistant",
+    desc: "Drafts, reviews, and organizes legal documents with precision and compliance, ensuring accurate, confidential support that meets every legal standard.",
     icon: <IoMdCheckmarkCircleOutline className="text-blue-600 w-4 h-4" />,
     skills: ["Technical Support", "Billing Inquiries", "Product Guidance"],
-    imgs: [ amina4, ethan4,liza4, diego4],
+    imgs: [amina4, ethan4, liza4, diego4],
     tag: "~80% faster call resolution",
     label: " AI Legal Assistant",
   },
@@ -81,47 +80,27 @@ const fadeUp = {
 const TransformYourBusiness = () => {
   const [modalEmp, setModalEmp] = useState(null);
 
-  // Map each imported slider image to the person's base agent id (start of their 4-agent block)
-  // Liza => 1, Diego => 5, Ethan => 9, Amina => 13
   const imageToPersonBase = new Map([
-    [liza1, 1],
-    [liza2, 1],
-    [liza3, 1],
-    [liza4, 1],
-      
-    [diego1, 5],
-    [diego2, 5],
-    [diego3, 5],
-    [diego4, 5],
-
-    [ethan1, 9],
-    [ethan2, 9],
-    [ethan3, 9],
-    [ethan4, 9],
-             
-    [amina1, 13],
-    [amina2, 13],
-    [amina3, 13],
-    [amina4, 13],     
+    [liza1, 1], [liza2, 1], [liza3, 1], [liza4, 1],
+    [diego1, 5], [diego2, 5], [diego3, 5], [diego4, 5],
+    [ethan1, 9], [ethan2, 9], [ethan3, 9], [ethan4, 9],
+    [amina1, 13], [amina2, 13], [amina3, 13], [amina4, 13],
   ]);
 
-  // Personas have different internal ordering of their role variants.
-  // Describe each order with role slugs so we can consistently pick the desired variant.
   const defaultRoleOrder = ["receptionist", "sales", "legal", "nurse"];
   const personRoleOrder = new Map([
-    [1, ["receptionist", "sales", "legal", "nurse"]], // Liza block (1-4)
-    [5, ["receptionist", "legal", "sales", "nurse"]], // Diego block (5-8)
-    [9, ["receptionist", "sales", "legal", "nurse"]], // Ethan block (9-12)
-    [13, ["receptionist", "legal", "sales", "nurse"]], // Amina block (13-16)
+    [1, ["receptionist", "nurse", "sales", "legal"]],
+    [5, ["receptionist", "nurse", "sales", "legal"]],
+    [9, ["receptionist", "nurse", "sales", "legal"]],
+    [13, ["receptionist", "nurse", "sales", "legal"]],
   ]);
 
-  // Target role per section (0..3): Receptionist, Nurse, Sales, Legal
-  const sectionTargetRoles = ["receptionist", "nurse", "sales", "legal"];
+  // ✅ FIXED (Healthcare and Legal swapped to correct positions)
+  const sectionTargetRoles = ["receptionist", "legal", "sales", "nurse"];
 
   const getRoleOffsetForSection = (personBase, sectionIndex) => {
     const roleOrder = personRoleOrder.get(personBase) || defaultRoleOrder;
-    const targetRole =
-      sectionTargetRoles[sectionIndex] || roleOrder[0] || defaultRoleOrder[0];
+    const targetRole = sectionTargetRoles[sectionIndex] || roleOrder[0];
     const offset = roleOrder.indexOf(targetRole);
     return offset >= 0 ? offset : 0;
   };

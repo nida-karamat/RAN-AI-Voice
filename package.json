@@ -12,6 +12,7 @@
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
     "@tailwindcss/vite": "^4.1.14",
+    "axios": "^1.13.2",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.1",
     "framer-motion": "^12.23.22",

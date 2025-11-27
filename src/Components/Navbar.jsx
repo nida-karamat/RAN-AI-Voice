@@ -154,7 +154,7 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-lg p-6 flex flex-col gap-4 rounded-md border border-gray-700"
+              className="fixed top-0 right-0 h-120 w-60 bg-white z-50 shadow-lg p-6 flex flex-col gap-4 rounded-sm border border-gray-700"
             >
               <button onClick={() => setMenuOpen(false)} className="self-end text-gray-700 hover:text-gray-900">
                 <X size={24} />

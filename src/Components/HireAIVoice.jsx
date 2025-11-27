@@ -22,12 +22,12 @@ import aminaHover from "../assets/Images/amina2.jpg";
 import liza1 from "../assets/Images/liza/liza1.jpg";
 import liza2 from "../assets/Images/liza/liza2.jpg";
 import liza3 from "../assets/Images/liza/liza3.jpg";
-import liza4 from "../assets/Images/liza/liza4.jpg";
+import liza4 from "../assets/Images/slider/liza3.jpg";
 
 import diego1 from "../assets/Images/diego/diego1.jpg";
 import diego2 from "../assets/Images/diego/diego2.jpg";
 import diego3 from "../assets/Images/diego/diego3.jpg";
-import diego4 from "../assets/Images/diego/diego4.jpg";
+import diego4 from "../assets/Images/slider/diego4.jpg";
 
 import ethan1 from "../assets/Images/ethan/ethan1.jpg";
 import ethan2 from "../assets/Images/ethan/ethan2.jpg";
@@ -35,7 +35,7 @@ import ethan3 from "../assets/Images/ethan/ethan3.jpg";
 import ethan4 from "../assets/Images/ethan/ethan4.jpg";
 
 import amina1 from "../assets/Images/amina/anima1.jpg";
-import amina2 from "../assets/Images/amina/anima2.jpg";
+import amina2 from "../assets/Images/slider/amina4.jpg";
 import amina3 from "../assets/Images/amina/anima3.jpg";
 import amina4 from "../assets/Images/amina/anima4.jpg";
 import CallScreen from "./CallScreen";
